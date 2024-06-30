@@ -8,13 +8,13 @@ const login = async (req, res) => {
         const {email,password}=req.body;
         const user = await pool.query("SELECT * FROM auth WHERE email = $1 AND password=$2", [email,password]);
         if (user.rows.length === 0) {
-            return res.status(401).send("Invalid Credentials");
+            return res.status(401).json("Invalid Credentials");
         }
         const token = jwt.sign({ user_id: user.rows[0].user_id }, process.env.JWT_SECRET);
         res.status(200).json({ token, username: user.rows[0].username});
     } catch (error) {
         console.log(error);
-        res.status(500).send("Server Error");
+        res.status(500).json("Server Error");
     }
 }
 
