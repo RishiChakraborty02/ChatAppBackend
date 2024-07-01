@@ -5,9 +5,9 @@ const findFriend = async (req, res) => {
     const user = await pool.query("SELECT * FROM auth WHERE username LIKE $1", [
       username,
     ]);
-    if (user.rows.length === 0) {
-      return res.status(404).send("User not found");
-    }
+    // if (user.rows.length === 0) {
+    //   return res.status(404).send("User not found");
+    // }
     res
       .status(200)
       .json(user.rows);
