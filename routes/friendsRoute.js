@@ -3,6 +3,6 @@ import { findFriend } from "../controllers/friendsController";
 
 const router = Router();
 
-router.get("/search", findFriend);
+router.post("/search", findFriend);
 
 export default router;
