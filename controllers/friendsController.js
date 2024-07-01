@@ -1,3 +1,4 @@
+import pool from "../config/dbConfig.js";
 const findFriend = async (req, res) => {
   try {
     const { username } = req.body;
