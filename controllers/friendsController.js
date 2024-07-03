@@ -2,7 +2,7 @@ import pool from "../config/dbConfig.js";
 const findFriend = async (req, res) => {
   try {
     const { username } = req.body;
-    const user = await pool.query("SELECT * FROM auth WHERE username LIKE $1", [
+    const user = await pool.query("SELECT username,user_id FROM auth WHERE username LIKE $1", [
       username,
     ]);
     // if (user.rows.length === 0) {
