@@ -18,6 +18,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/friends", friendsRouter);
 app.use("/api/messages", messageRouter);
 
+app.use(express.json());
+
 const httpServer = createServer(app);
 
 app.get("/", (req,res) => {
