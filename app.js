@@ -2,7 +2,6 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import pool from "./config/dbConfig.js";
 import authRouter from "./routes/authRoute.js";
 import friendsRouter from "./routes/friendsRoute.js";
 import messageRouter from "./routes/messageRoute.js";
@@ -13,12 +12,13 @@ import dotenv from "dotenv";
 dotenv.config();
 const PORT = process.env.PORT;
 const app = express();
+app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/friends", friendsRouter);
 app.use("/api/messages", messageRouter);
 
-app.use(express.json());
+
 
 const httpServer = createServer(app);
 
