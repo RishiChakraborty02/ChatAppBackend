@@ -15,6 +15,7 @@ async function chatServer() {
 
     socket.on("message", async (data) => {
       const recipientSocketId = activeUsers[data.received_by];
+      console.log(data);
       if (recipientSocketId) {
         io.to(recipientSocketId).emit("message", data);
       } else {
@@ -33,6 +34,16 @@ async function chatServer() {
           console.error("Error saving message to database:", error);
         }
       }
+    });
+
+    socket.on("receiveundelivered", async (data) => {
+      try {
+        const undeliveredmsgs = await pool.query(
+          "SELECT  * from messages where received_by = $1 and message_status = $2",
+          [socket.user, 1]
+        );
+        socket.emit("undelivered", undeliveredmsgs.rows);
+      } catch (error) {}
     });
   });
 }
