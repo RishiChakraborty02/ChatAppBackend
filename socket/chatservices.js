@@ -21,13 +21,14 @@ async function chatServer() {
       } else {
         try {
           await pool.query(
-            "INSERT INTO messages (message_id, sent_by, received_by,message_status,message_content) VALUES ($1, $2, $3, $4, $5)",
+            "INSERT INTO messages (message_id, sent_by, received_by,message_status,message_content,sent_at) VALUES ($1, $2, $3, $4, $5, $6)",
             [
               data.message_id,
               data.sent_by,
               data.received_by,
               1,
               data.message_content,
+              data.sent_at,
             ]
           );
         } catch (error) {

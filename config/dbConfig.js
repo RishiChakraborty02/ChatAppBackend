@@ -18,6 +18,7 @@ const pool = new pg.Pool({
 const startdb = async () => {
     try {
         await pool.connect(); // It's good practice to handle the promise returned by connect.
+        await pool.query("DROP TABLE IF EXISTS messages")
         const time = await pool.query("SELECT NOW()");
         console.log(time.rows);
         console.log("Database connected");

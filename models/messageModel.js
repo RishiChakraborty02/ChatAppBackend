@@ -2,7 +2,7 @@ const messageTable = `CREATE TABLE IF NOT EXISTS messages(
 message_id UUID PRIMARY KEY,
 sent_by UUID NOT NULL,
 received_by UUID NOT NULL,
-sent_At TIMESTAMP NOT NULL,
+sent_at TIMESTAMP NOT NULL,
 message_status INT NOT NULL,
 message_content TEXT NOT NULL
 );
