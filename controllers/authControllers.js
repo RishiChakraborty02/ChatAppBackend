@@ -50,7 +50,7 @@ const register = async (req, res) => {
     res.status(200).json({
       token,
       username: newUser.rows[0].username,
-      user_id: user.rows[0].user_id,
+      user_id: newUser.rows[0].user_id,
     });
   } catch (error) {
     console.log(error);
